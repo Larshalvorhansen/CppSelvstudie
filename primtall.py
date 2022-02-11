@@ -8,7 +8,7 @@ if num > 1:
         if (num % i) == 0:
             # if factor is found, set flag to True
             flag = True
-            print(i)
+            print(num, "kan deles på ", i, "og er derfor ikke et primtall")
             # break out of loop
             break
 
