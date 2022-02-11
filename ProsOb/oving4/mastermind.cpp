@@ -11,12 +11,15 @@ void playMastermind(){
     string code = "";
     string guess = "";
     code = randomizeString(4,65+(letters-1),65);
-    while (guess != code && forsok <= 10){
+    while (guess != code || forsok <= 10){
         guess = readInputToString(65+(letters-1),65);
         int svartKnott = checkCharactersAndPosition(code,guess);
         int hvitKnot = checkCharacters(code,guess);
         cout << "Antall hvite knotter: " << hvitKnot << ". Antall svarte knotter: " << svartKnott << endl;
         forsok ++;
+        if(svartKnott == letters-1){
+            break;
+        }
     }
     if(forsok <= 10){
         cout << "Grattulerer du har gjetttet riktig!" << endl;

@@ -78,13 +78,12 @@ string readInputToString(char ovreChar, char nedreChar){
     int n = streng.length();
     for(int i = 0; i < n; i++){
         char t = tolower(streng[i]);
-        if(t >= ovreChar || t <= nedreChar){
+        if(t > tolower(ovreChar) || t < tolower(nedreChar)){
             cout << "Du har en eller flere bokstaver utenfor grensen. Prøv igjen." << endl;
             break;
         }
-        cout << streng[i] << endl;
     }
-    return("hei");
+    return(streng);
 }
 
 int countChar(string streng, char c){

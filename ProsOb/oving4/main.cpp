@@ -51,7 +51,6 @@ int main(){
 				break;
 			case 9:
 				readInputToString(70,65);
-				break;
 			case 10:
 				countChar("HHHHahfdbaaaHei",97);
 				break;
