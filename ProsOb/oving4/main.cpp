@@ -9,6 +9,7 @@
 #include "std_lib_facilities.h"
 #include "utilities.h"
 #include "tests.h"
+#include "mastermind.h"
 //------------------------------------------------------------------------------'
 
 // C++ programs start by executing the function main
@@ -53,6 +54,9 @@ int main(){
 				break;
 			case 10:
 				countChar("HHHHahfdbaaaHei",97);
+				break;
+			case 11:
+				playMastermind();
 				break;
 		}
 	}

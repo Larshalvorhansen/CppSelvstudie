@@ -73,7 +73,7 @@ string randomizeString(int antallTegn, char ovreChar, char nedreChar){
 
 string readInputToString(char ovreChar, char nedreChar){
     string streng = "";
-    cout << "Skriv inn en streng med tegn mellom " << nedreChar << " og " << ovreChar << "." << endl;
+    cout << "Skriv inn en streng med fire tegn mellom " << nedreChar << " og " << ovreChar << "." << endl;
     cin >> streng;
     int n = streng.length();
     for(int i = 0; i < n; i++){
