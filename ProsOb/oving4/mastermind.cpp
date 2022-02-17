@@ -11,7 +11,7 @@ void playMastermind(){
     string code = "";
     string guess = "";
     code = randomizeString(4,65+(letters-1),65);
-    while (guess != code || forsok <= 10){
+    while (guess != code && forsok <= 10){
         guess = readInputToString(65+(letters-1),65);
         int svartKnott = checkCharactersAndPosition(code,guess);
         int hvitKnot = checkCharacters(code,guess);
