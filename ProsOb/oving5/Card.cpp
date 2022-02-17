@@ -17,7 +17,7 @@ string suitToString(Suit s){
             strengType = "Spades";
             break;
     }
-    cout << strengType << endl;
+    //cout << strengType << endl;
     return(strengType);
 }
 // two = 2, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace}
@@ -65,7 +65,7 @@ string rankToString(Rank r){
             strengType = "ace";
             break;
     }
-    cout << strengType << endl;
+    //cout << strengType << endl;
     return(strengType);
 }
 
@@ -79,6 +79,6 @@ string Card::getRank(){
 string Card::toString(){
     string verdi = rankToString(r);
     string type = suitToString(s);
-    string verdiOgType = verdi + " of" + type;
+    string verdiOgType = verdi + " of " + type;
     return(verdiOgType);
 }

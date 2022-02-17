@@ -8,6 +8,7 @@
 
 #include "std_lib_facilities.h"
 #include "Card.h"
+#include "CardDeck.h"
 //------------------------------------------------------------------------------'
 
 // C++ programs start by executing the function main
@@ -18,6 +19,8 @@ int main()
 		// Rank r = Rank::king;
 		// Suit s = Suit::hearts;
 		// string rank = rankToString(r);
+		Card c{Suit::spades, Rank::ace};
+		cout << c.toString() << '\n';
         cout << "Angi valg: ";
         cin >> choice;
         cout << '\n';
@@ -30,6 +33,9 @@ int main()
 				break;
 				// Person p{20, "Bob"};
 				// p.setAge(21);
+			case 3:
+				CardDeck hei;
+				break;
 		}
 	}
 }
