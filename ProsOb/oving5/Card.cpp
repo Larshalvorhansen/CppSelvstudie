@@ -1,19 +1,19 @@
 #include "Card.h"
 
-string suitToString(enum Suit){
+string suitToString(Suit s){
     string strengType = "";
-    int intType {static_cast<int>(Suit::clubs)};
+    int intType {static_cast<int>(s)};
     switch(intType){
-        case 0:
+        case int(Suit::clubs): //Kan bruke denne måten for å konvertere til int
             strengType = "Clubs";
             break;
-        case 1:
+        case static_cast<int>(Suit::diamonds): //Men denne er bedre
             strengType = "Diamonds";
             break;
-        case 2:
+        case static_cast<int>(Suit::hearts):
             strengType = "Hearts";
             break;
-        case 3:
+        case static_cast<int>(Suit::spades):
             strengType = "Spades";
             break;
     }
@@ -21,9 +21,9 @@ string suitToString(enum Suit){
     return(strengType);
 }
 // two = 2, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace}
-string rankToString(enum Rank){
+string rankToString(Rank r){
     string strengType = "";
-    int intType {static_cast<int>(Rank::jack)};
+    int intType {static_cast<int>(r)};
     switch(intType){
         case 2:
             strengType = "two";
@@ -67,4 +67,18 @@ string rankToString(enum Rank){
     }
     cout << strengType << endl;
     return(strengType);
+}
+
+Card::Card(Suit suit, Rank rank): s{suit}, r{rank}{}
+string Card::getSuit(){
+    return(suitToString(s));
+}
+string Card::getRank(){
+    return(rankToString(r));
+}
+string Card::toString(){
+    string verdi = rankToString(r);
+    string type = suitToString(s);
+    string verdiOgType = verdi + " of" + type;
+    return(verdiOgType);
 }
