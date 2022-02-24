@@ -2,7 +2,7 @@
 
 string suitToString(Suit s){
     string strengType = "";
-    int intType {static_cast<int>(s)};
+    int intType{static_cast<int>(s)};
     switch(intType){
         case int(Suit::clubs): //Kan bruke denne måten for å konvertere til int
             strengType = "Clubs";
@@ -25,10 +25,10 @@ string rankToString(Rank r){
     string strengType = "";
     int intType {static_cast<int>(r)};
     switch(intType){
-        case 2:
+        case int(Rank::two):
             strengType = "two";
             break;
-        case 3:
+        case static_cast<int>(Rank::three):
             strengType = "three";
             break;
         case 4:
@@ -70,12 +70,15 @@ string rankToString(Rank r){
 }
 
 Card::Card(Suit suit, Rank rank): s{suit}, r{rank}{}
+
 string Card::getSuit(){
     return(suitToString(s));
 }
+
 string Card::getRank(){
     return(rankToString(r));
 }
+
 string Card::toString(){
     string verdi = rankToString(r);
     string type = suitToString(s);

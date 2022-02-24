@@ -9,6 +9,7 @@
 #include "std_lib_facilities.h"
 #include "Card.h"
 #include "CardDeck.h"
+#include "BlackJack.h"
 //------------------------------------------------------------------------------'
 
 // C++ programs start by executing the function main
@@ -19,7 +20,7 @@ int main()
 		// Rank r = Rank::king;
 		// Suit s = Suit::hearts;
 		// string rank = rankToString(r);
-		Card c{Suit::spades, Rank::ace};
+		Card c{Suit::hearts, Rank::ace};
 		cout << c.toString() << '\n';
         cout << "Angi valg: ";
         cin >> choice;
@@ -36,6 +37,10 @@ int main()
 			case 3:
 				CardDeck hei;
 				break;
+			// case 4: 
+			// 	Card test;
+			// 	isAce();
+			// 	break;
 		}
 	}
 }

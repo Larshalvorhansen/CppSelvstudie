@@ -1,7 +1,6 @@
 {
     "tdt4102.isProjectFolder": true,
     "files.associations": {
-        "iosfwd": "cpp",
-        "__locale": "cpp"
+        "iosfwd": "cpp"
     }
 }

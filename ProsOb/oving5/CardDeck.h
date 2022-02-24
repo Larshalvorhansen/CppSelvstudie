@@ -8,5 +8,7 @@ class CardDeck{
         void swap(int a, int b); //Ligger i private fordi den ikke trenger å hentes fra main
     public:
         CardDeck();
-        
+        void print();
+        void shuffle();
+        Card drawCard();
 };
