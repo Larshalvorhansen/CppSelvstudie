@@ -7,6 +7,8 @@
 // This program outputs the message "Hello, World!" to the monitor
 
 #include "std_lib_facilities.h"
+#include "courceCatalog.h"
+#include "tempLesing.h"
 
 void writeToFile(){
 	ofstream outFile {"fil.txt"};
@@ -26,7 +28,7 @@ void writeToFile(){
 
 void readFromFile(){
 	ifstream inFile {"fil.txt"};
-	ofstream outFile {"hetero.txt"};
+	ofstream outFile {"tekst.txt"};
 	string line;
 	int i = 0;
 
@@ -154,6 +156,15 @@ int main(){
 	// readFromFile();
 	// test();
 	statistikk();
+	CourseCatalog::addCourse();
+	Temp t;
+
+	ifstream inFile{"temperatures.txt"};
+	if (!inFile){
+		cerr << "Kunne ikke åpne fil" << endl;
+	}
+
+	inFile >> s;
 }
 
 // #include "std_lib_facilities.h"
@@ -179,4 +190,11 @@ istream
 ifstream
 ostream
 ofstream
+
+Teori: 
+2b) Det rarådes sterkt å bruke [] for å hente ut fra map. Det er fordi en ueksisten ting inni [] blir lagt til i mappet.
+Det er berde å bruke .at for henting og .insert for innsetting. 
+
+3d) operator legger alltid til en ny verdi til og med om ingen key eller value er spesifisert.
+Insert prøver å legge til. Når det allerede er en verdi tilstede blir det ikke lagt til noe nytt ettersom map bare har et variabel for hver nøkkel.
 */
