@@ -1,6 +1,6 @@
 #include "std_lib_facilities.h"
-#include "Graph.h" 
-#include "AnimationWindow.h" 
+// #include "Graph.h" 
+// #include "AnimationWindow.h" 
 using namespace std;
 
 int add(int a, int b){

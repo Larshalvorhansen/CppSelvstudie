@@ -8,9 +8,11 @@ class CourseCatalog{
             {"TMA4106", "Matte2"}
         };
     public:
-        friend ostream& operator<<(ostream& ostr, const fag& f);
+        friend ostream& operator<<(ostream& ostr, const CourseCatalog& cat);
         void addCourse();
         void removeCourse();
         string getCource();
         void toFile();
+        void addTree();
+        void fromFile();
 };

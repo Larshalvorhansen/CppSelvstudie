@@ -1,0 +1,3 @@
+Emnekode; Heisann Name: Hei
+Emnekode; TMA4101 Name: Matte1
+Emnekode; TMA4106 Name: Matte2

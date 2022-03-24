@@ -25,20 +25,28 @@ string CourseCatalog::getCource(){ //finn emnenavnet til et kurs med en gitt emn
     return(static_cast<string>(fag.at(emnenavn)));
     cout << static_cast<string>(fag.at(emnenavn)) << endl;
 }
-ostream& operator<<(ostream& ostr, const CourseCatalog& cC){
-    ostr << "Emnekode; " << f.first << " Name: " << fag.second << endl; 
-    return os;
+ostream& operator<<(ostream& ostr, const CourseCatalog& cat){
+    for(auto a : cat.fag){
+    ostr << "Emnekode; " << a.first << " Name: " << a.second << endl; 
+    }
+    return ostr;
 }
 
-void addThree(){
-    courceCatalog::fag.insert({"TDT4110", "Informasjonsteknologi grunnkurs"})
-    courceCatalog::fag.insert({"TDT4102", "Prosedyre- og objektorientert programering"})
-    courceCatalog::fag.insert({"TMA4100", "Matematikk 1"})
+void CourseCatalog::addTree(){
+    fag.insert({"TDT4110", "Informasjonsteknologi grunnkurs"});
+    fag.insert({"TDT4102", "Prosedyre- og objektorientert programering"});
+    fag.insert({"TMA4100", "Matematikk 1"});
 }
 
 void CourseCatalog::toFile(){
     ofstream outFile {"fagBibliotek.txt"};
     for(auto& elem : fag){
-        outFile << "Emnekode; " << fag.first << " Name: " << fag.second << endl;
+        outFile << "Emnekode; " << elem.first << " Name: " << elem.second << endl;
+    }
+}
+void CourseCatalog::fromFile(){
+    ifstream inFile {"fagBibliotek.txt"};
+    for(auto& elem : fag){
+        cout << elem.first << ", " << elem.second << endl;
     }
 }

@@ -1,6 +1,10 @@
 {
     "tdt4102.isProjectFolder": true,
     "files.associations": {
-        "iosfwd": "cpp"
-    }
+        "iosfwd": "cpp",
+        "__locale": "cpp",
+        "ios": "cpp",
+        "ostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }

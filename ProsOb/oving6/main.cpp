@@ -152,20 +152,49 @@ void test(){
 }
 
 int main(){
-	// writeToFile();
-	// readFromFile();
-	// test();
-	statistikk();
-	CourseCatalog::addCourse();
-	Temp t;
+	int choice = -1;
+    while (choice != 0){
+        cout << "0) Avslutt \n"
+             << "1) testCallByValue\n";
+        cout << "Angi valg (0-11): ";
 
-	ifstream inFile{"temperatures.txt"};
-	if (!inFile){
-		cerr << "Kunne ikke åpne fil" << endl;
+        cin >> choice;
+        cout << '\n';
+
+        switch (choice){
+			case 1:
+				statistikk();
+				break;
+			case 2:
+				//CourseCatalog::addCourse();
+				break;
+			case 3:
+				cout << "test terminal" << endl;
+				break;
+			case 4:
+				writeToFile();
+				break;
+			case 6: 
+				readFromFile();
+				break;
+			case 7:
+				test();
+				break;
+			case 8:
+				tempStats(readTemps("temperatures.txt"));
+				break;
+			case 9:
+				CourseCatalog cat;
+				cat.addCourse();
+       			cat.removeCourse();
+        		cat.getCource();
+        		cat.toFile();
+        		cat.addTree();
+				break;
+		}
 	}
-
-	inFile >> s;
 }
+
 
 // #include "std_lib_facilities.h"
 // const map<string, string> capitalsMap {
