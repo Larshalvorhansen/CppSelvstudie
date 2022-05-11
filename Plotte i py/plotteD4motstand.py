@@ -1,11 +1,11 @@
 import csv
 import matplotlib.pyplot as plt
 
-header = ["g"]
-data = ["f"]
+header = []
+data = []
 
 
-filename = "BandstopData.csv"
+filename = "D4motstand.csv"
 with open(filename) as csvfile:
     csvreader = csv.reader(csvfile)
 
@@ -22,9 +22,11 @@ print(data[1])
 
 time = [p[0] for p in data]
 ch1 = [p[1] for p in data]
-ch2 = [p[2] for p in data]
+#ch2 = [30*p[2] for p in data]
 
-plt.plot(time,ch1, time,ch2)
+plt.xlabel("Motstand(Ohm)")
+plt.ylabel("Frekvens(Hz)")
+plt.plot(time,ch1)
 plt.show()
 
     

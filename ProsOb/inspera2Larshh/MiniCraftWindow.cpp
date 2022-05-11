@@ -1,0 +1,324 @@
+#include "MiniCraftWindow.h"
+#include <cmath>
+
+MiniCraftWindow::MiniCraftWindow(int x, int y, int gridWidth, int gridHeight)
+    : AnimationWindow{x, y, gridWidth * blockSize + widgetWidth * 4, gridHeight * blockSize, "MiniCraft"},
+    gridWidth{gridWidth}, gridHeight{gridHeight},
+    inventoryList{gridWidth * blockSize + blockSize + widgetWidth, 0, widgetWidth + widgetWidth / 2, widgetHeight, "Inventory"},
+    markedInventoryType{gridWidth * blockSize + widgetWidth * 3, 0, widgetWidth, widgetHeight, ""}
+   
+{
+    // Initialize the world to the correct size
+    initializeWorld();
+
+    // Add and activate the GUI elements
+    add(inventoryList);
+    add(markedInventoryType);
+   
+    /**
+        You can call functions in the block below
+    */
+
+    // START OF BLOCK
+
+    testBlockCreation(); // 3 c)
+    drawGrid();
+
+    //generateFlatWorld(); //4 a)
+    //generateSteepWorld(); //4 b)
+
+    //initializePlayer({30,0}); //5 a)
+
+    // END OF BLOCK
+}
+//########################## Game loop ###########################################
+
+// The game loop
+// Constantly called to handle user input and redraw the game window
+// You do not have to change anything in this function
+void MiniCraftWindow::playMiniCraft()
+{
+    keep_previous_frame(false);
+    while (!this->should_close())
+    {
+        this->next_frame();
+        updatePlayer();
+        drawGrid();
+    }
+}
+
+//########################## Test function ###########################################
+
+// Creates a test world with two blocks, figure 2.
+void MiniCraftWindow::testBlockCreation()
+{
+    pair<int, int> block1pos{2, 2};
+    pair<int, int> block2pos{3, 4};
+
+    addBlock(block1pos, BlockType::Grass);
+    addBlock(block2pos, BlockType::Stone);
+
+    block_at_pos(block1pos)->draw(*this, pt_at_pos(block1pos));
+    block_at_pos(block2pos)->draw(*this, pt_at_pos(block2pos));
+}
+
+//########################## Grid related ###########################################
+
+// TASK
+Point MiniCraftWindow::pt_at_pos(pair<int, int> pos)
+{
+    // BEGIN: 3a
+    
+    return Point{pos.first*blockSize,pos.second*blockSize};
+
+    // END: 3a
+}
+
+//########################## Basic functionality ###########################################
+
+// TASK
+void MiniCraftWindow::addBlock(pair<int, int> pos, BlockType type)
+{
+    // BEGIN: 3b
+
+    block_at_pos(pos) = make_shared<Block>(type);
+
+    // END: 3b
+}
+
+// TASK
+void MiniCraftWindow::drawGrid()
+{
+    // BEGIN: 3d
+    for (int height = 0; height < gridHeight; height++)
+    {
+        for (int width = 0; width < gridWidth; width++)
+        {
+            shared_ptr<Block> block = block_at_pos({width, height});
+            if (block)
+            {
+                block->draw(*this, pt_at_pos({width, height}));
+            }
+        }
+    }
+    // END: 3d
+}
+
+// TASK
+void MiniCraftWindow::removeBlock(pair<int, int> pos)
+{
+    // BEGIN: 3e
+    
+    block_at_pos(pos) = nullptr;
+
+    // END: 3e
+}
+
+//########################## World creation related ###########################################
+
+// Initializes the game to the correct size
+void MiniCraftWindow::initializeWorld()
+{
+    blockGrid = vector<shared_ptr<Block>>(gridWidth * gridHeight);
+}
+
+// TASK
+void MiniCraftWindow::generateFlatWorld(int surfaceHeight)
+{
+    // BEGIN: 4a
+    
+    (void)surfaceHeight;
+    
+    // END: 4a
+}
+
+// TASK
+void MiniCraftWindow::generateSteepWorld()
+{
+    // BEGIN: 4b
+
+    // END: 4b
+}
+
+//########################## Player related ###########################################
+
+// TASK
+void MiniCraftWindow::initializePlayer(Point playerPos)
+{
+    // BEGIN: 5a
+   
+    // END: 5a
+}
+
+// Wrapper function for player movement
+// The function draws the player, if the player exists
+// This function is already called in the game loop function playMiniCraft()
+// Functions called in this function will therefore constantly be called
+// Call the functions from task 5 b,c,d,e here when they are implemented
+void MiniCraftWindow::updatePlayer()
+{
+    if(player != nullptr){
+        /**
+            You can call functions in the block below
+        */
+        // START OF BLOCK
+
+        // gravity(); // 5 b)
+        // moveLeft(); // 5 c)
+        // moveRight(); // 5 d)
+        // jump(); // 5 e)
+
+
+        // END OF BLOCK
+
+        // This function call draws the player, if it exist
+        player->draw(*this, playerPoint);
+    }
+}
+
+// TASK
+void MiniCraftWindow::gravity()
+{
+    // BEGIN: 5b
+    
+    // END: 5b
+}
+
+// TASK
+void MiniCraftWindow::moveRight()
+{
+    // BEGIN: 5c
+    
+    // END: 5c
+}
+
+// TASK
+void MiniCraftWindow::moveLeft()
+{
+    // BEGIN: 5d
+    
+    // END: 5d
+}
+
+// TASK
+void MiniCraftWindow::jump()
+{
+    // BEGIN: 5e
+    
+    // END: 5e
+}
+
+// To be used in task 5 b)
+// Returns true if a player located in playerPos touches the ground
+// Returns false otherwise
+bool MiniCraftWindow::isPlayerOnGround(Point playerPos)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        Point point = Point{playerPos.x + i * playerWidth - 1, playerPos.y + playerHeight};
+        if (!inRange(point))
+        {
+            return true;
+        }
+        if (block_at_pt(point) != nullptr)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+// To be used in task 5 c,d,e)
+// Returns true if playerPos correspond a legal player position.
+// Returns false otherwise
+bool MiniCraftWindow::isPlayerPosLegal(Point playerPos)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            Point point = Point{playerPos.x + i * (playerWidth - 1), playerPos.y + j * playerHeight - 1};
+
+            if (!inRange(point))
+            {
+                return false;
+            }
+
+            if (block_at_pt(point) != nullptr)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+//########################## Inventory related ###########################################
+
+// Overloads the FLTK handle() function
+// You do NOT have to understand this function
+int MiniCraftWindow::handle(int event)
+{
+    // Handle a potential mouse click
+    if (event == FL_PUSH)
+    {
+        getMouseInput();
+    }
+
+    // Secures that we do not overwrite existing functionality 
+    return AnimationWindow::handle(event);
+}
+
+// Called by the handle function. Handles what to do when the mouse is clicked.
+void MiniCraftWindow::getMouseInput()
+{
+
+    Point p = get_mouse_coordinates();
+    MouseButton mb = static_cast<MouseButton>(Fl::event_button());
+
+    switch (mb)
+    {
+    case MouseButton::left:
+        obtainBlock(p); // If the left mouse button is pushed, obtainBlock(p) is called
+        break;
+    case MouseButton::right:
+        placeBlock(p); // If the right mouse button is pushed, placeBlock(p) is called
+        break;
+    default:
+        break;
+    }
+    updateInventoryList(); // Updating the graphics
+}
+
+// TASK
+void MiniCraftWindow::obtainBlock(Point pt)
+{
+    //BEGIN: 6a
+    
+    (void)pt;
+
+    //END: 6a
+}
+
+// TASK
+void MiniCraftWindow::updateInventoryList()
+{
+    //BEGIN: 6b
+    
+    //END: 6b
+}
+
+// TASK
+void MiniCraftWindow::placeBlock(Point pt)
+{
+    //BEGIN: 6c
+    
+    (void)pt;
+
+    //END: 6c
+}
+
+
+
+
+

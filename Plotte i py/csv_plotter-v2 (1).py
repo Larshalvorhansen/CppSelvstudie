@@ -5,7 +5,7 @@ def readCSV (path):
   data = []
   header = [] # removes first line of file
   filename = path
-  with open("BandstopData.csv") as csvfile:
+  with open("D3dataScope.csv") as csvfile:
     csvreader = csv.reader(csvfile)
     header = next(csvreader)  # removes first line of file
     for datapoint in csvreader:

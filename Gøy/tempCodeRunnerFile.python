@@ -1,0 +1,17 @@
+#matplotlib notebook
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import integrate
+import ipywidgets as ipw
+
+plt.figure()
+IC = np.linspace(1.0, 6.0, 21) # initial conditions for deer population (prey)
+for deer in IC:
+    X0 = [deer, 1.0]
+    Xs = integrate.odeint(derivative, X0, t, args = (alpha, beta, delta, gamma))
+    plt.plot(Xs[:,0], Xs[:,1], "-", label = "$x_0 =$"+str(X0[0]))
+plt.xlabel("Deer")
+plt.ylabel("Wolves")
+plt.legend()
+plt.title("Deer vs Wolves");
