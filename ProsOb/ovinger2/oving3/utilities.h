@@ -1,3 +1,3 @@
 #pragma once
 
-int randomWithLimits(int lower, int upper);
+int randomWithinLimits(int upperLimit, int lowerLimit);

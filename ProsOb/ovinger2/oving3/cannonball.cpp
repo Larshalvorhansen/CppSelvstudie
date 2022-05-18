@@ -1,5 +1,7 @@
 #include "cannonball.h"
 #include "std_lib_facilities.h"
+#include "utilities.h"
+#include "cannonball_viz.h"
 
 double acclY(){
     return -9.81;
@@ -24,7 +26,7 @@ void printTime(double time){
     cout << "tid: " << h << " timer " << m << " minutter og " << s << "sekunder" << endl;
 }
 
-double fligthTime(double initVelocity){
+double flightTime(double initVelocity){
     return (-2*initVelocity)/acclY();
 }
 
@@ -32,12 +34,14 @@ double getUserInputTheta(){
     double Theta;
     cout << "Skriv inn en vinkel her "<< endl;
     cin >> Theta;
+    return Theta;
 }
 
 double getUserInputAbsVelocity(){
     double absVelocity;
     cout << "Skriv inn en fart her "<< endl;
     cin >> absVelocity;
+    return absVelocity;
 }
 
 double degToRad(double deg){
@@ -72,9 +76,33 @@ vector<double> getVelocityVector(double theta, double absVelocity)
 }
 
 double getDistanceTraveled(double velociyX, double velocityY){
-    return fligthTime(velocityY)*velociyX;
+    return flightTime(velocityY)*velociyX;
 }
 
 double targetPractice(double distanceToTarget, double velocityX, double velocityY){
-    return abs(distanceToTarget-getDistanceTraveled(velocityX,velocityY));
+    return getDistanceTraveled(velocityX,velocityY)-distanceToTarget;
+}
+
+void playTargetPractice(){
+    int blinkPos = randomWithinLimits(1000,100);
+    int j;
+    for (int i = 0; i < 10; i++)
+    {
+        double vinkel = getUserInputTheta();
+        double fart = getUserInputAbsVelocity();
+        double avstandFraBlink = targetPractice(blinkPos,getVelocityY(vinkel,fart),getVelocityY(vinkel,fart));
+        cannonBallViz(blinkPos,1000,getVelocityX(vinkel,fart),getVelocityY(vinkel,fart),100);
+        if(abs(avstandFraBlink)<=5){
+            cout << "Gratulerer du traff!";
+            break;
+        }
+        else if(avstandFraBlink<0){
+            cout << "Skuddet var litt for kort. Avstand fra blink er " << abs(avstandFraBlink) << endl;
+        }
+        else if(avstandFraBlink>0){
+            cout << "Skuddet var litt for langt. Avstand fra blink er " << avstandFraBlink << endl;
+        }
+        j=i;
+    }
+    if(j==9){cout << "Du tapte desverre.";}
 }
