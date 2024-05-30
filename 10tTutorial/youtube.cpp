@@ -27,3 +27,16 @@ int main()
     cin >> exponent;
     print_pow(base, exponent);
 }
+
+/*
+Notater:
+    Datatyper: 
+        integral - int med mer
+            int - 
+        char - en karraker
+        floating point - desimaltall
+        bool - T/F
+        string -tekst
+        arrays - mange av den samme typen
+        class - custom type f eks: epler
+*/
