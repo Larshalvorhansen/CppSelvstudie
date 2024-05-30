@@ -39,4 +39,8 @@ Notater:
         string -tekst
         arrays - mange av den samme typen
         class - custom type f eks: epler
+    Const: 
+        #Define
+        const 
+        enum{}
 */

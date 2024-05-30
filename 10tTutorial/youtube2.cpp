@@ -1,9 +1,11 @@
 #include <iostream>
 #include <climits>
 using namespace std;
+#define D 24
 
 int main()
 {
-    bool pizza_is_good = 0;
-    cout << pizza_is_good << endl;
+    string greeting;
+    getline(cin, greeting);
+    cout << greeting << endl;
 }
